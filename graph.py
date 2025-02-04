@@ -3,8 +3,8 @@ import numpy as np
 import neural_network as nw
 
 
-model = nw.Network(r'network\neural_networks\digit_project')
-model.load()
+model = nw.Network()
+model.load(r'neural_networks\digit_test')
 
 
 BUTTON_COLOR_OFF = (100, 100, 150)
