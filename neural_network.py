@@ -1,6 +1,5 @@
 import numpy as np
 from os import path, makedirs
-from time import time
 
 
 def makedirs_(dir_path):  # Создает папку только, если она не существует
@@ -103,6 +102,7 @@ class Network:  # Инициализация нейросети
 
     def learn(self, data, labels, epochs, batch_size, train_rate, valid_data=None, valid_labels=None):
         print('Начало обучения')
+
         for ep in range(epochs):
             epoch_loss = 0
             correct_count = 0
@@ -140,6 +140,7 @@ class Network:  # Инициализация нейросети
                     self.weights[L] -= train_rate * dE_dW
                     self.bias[L] -= train_rate * dE_dB
 
+
                 epoch_loss += np.sum(cross_entropy_batch(layer[-1], y))
                 correct_count += num_correct(layer[-1], y)
 
@@ -151,20 +152,20 @@ class Network:  # Инициализация нейросети
 
 
 def main():
-    train = np.loadtxt(r'mnist\mnist_train.csv', dtype='uint8', delimiter=',')
+    train = np.loadtxt(r'mnist\mnist_train.csv', dtype='uint8', delimiter=',')  # Данные для обучения
     train_data = train[:, 1:].astype('float64') / 255
     train_labels = train[:, 0]
 
-    test = np.loadtxt(r'mnist\mnist_test.csv', dtype='uint8', delimiter=',')
+    test = np.loadtxt(r'mnist\mnist_test.csv', dtype='uint8', delimiter=',')  # Данные для тестирования
     test_data = test[:, 1:].astype('float64') / 255
     test_labels = test[:, 0] 
 
 
     digit = Network()
-    #digit.load(r'neural_networks\digit_test')
+    #digit.load(r'MNIST_model')
     digit.init_weights([784, 256, 10])
-    digit.learn(train_data, train_labels, 50, 5000, 0.0001, test_data, test_labels)
-    digit.save(r'neural_networks\digit_test')
+    digit.learn(train_data, train_labels, 20, 50, 0.01, test_data, test_labels)
+    digit.save(r'MNIST_model')
     print(digit.test(test_data, test_labels))
 
 

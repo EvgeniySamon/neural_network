@@ -1,8 +1,0 @@
-path - 'network\neural_networks\digit_project\'
-layers - [784, 256, 10]
-train_data_path - 'network\mnist\mnist_train.csv'
-test_data_path - 'network\mnist\mnist_test.csv'
-epochs - '5'
-batch - '5000'
-train_rate - '1e-05'
-learn time - '13.748557329177856'
